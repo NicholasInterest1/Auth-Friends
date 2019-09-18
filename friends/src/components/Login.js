@@ -1,5 +1,6 @@
 import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import styled from "styled-components";
 
 class Login extends React.Component {
   state = {
@@ -35,21 +36,21 @@ class Login extends React.Component {
         <br />
         <br />
         <form onSubmit={this.login}>
-          <input
+          <TheInput
             type="text"
             name="username"
             value={this.state.credentials.username}
-            placeholder="login name"
+            placeholder=" insert username"
             onChange={this.handleChange}
           />
-          <input
+          <TheInput
             type="password"
             name="password"
             value={this.state.credentials.password}
-            placeholder="password"
+            placeholder=" insert password"
             onChange={this.handleChange}
           />
-          <button>Log in</button>
+          <TheBtn>Log in</TheBtn>
         </form>
       </div>
     );
@@ -57,3 +58,18 @@ class Login extends React.Component {
 }
 
 export default Login;
+
+const TheInput = styled.input`
+  border: 2px solid black;
+  margin-right: 5px;
+  align-items: center;
+`;
+
+const TheBtn = styled.button`
+  align-items: center;
+  border: 1px solid black;
+  margin-left: 15px;
+  border-radius: 4px;
+  height: 1.5rem;
+  width: 4rem;
+`;

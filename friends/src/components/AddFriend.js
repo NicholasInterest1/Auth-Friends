@@ -18,38 +18,38 @@ function AddFriend({ postFriend }) {
     postFriend(addFriend);
   };
   return (
-    <TheForm onSubmit={addFriend}>
-      <input
+    <form onSubmit={addFriend}>
+      <TheInput
         type="text"
         name="name"
         value={addFriendName}
-        placeholder="insert name"
+        placeholder=" insert name"
         onChange={e => {
           setAddFriendName(e.target.value);
         }}
       />
 
-      <input
+      <TheInput
         type="text"
         name="age"
         value={addFriendAge}
-        placeholder="insert age"
+        placeholder=" insert age"
         onChange={e => {
           setAddFriendAge(e.target.value);
         }}
       />
 
-      <input
+      <TheInput
         type="email"
         name="email"
         value={addFriendEmail}
-        placeholder="insert email"
+        placeholder=" insert email"
         onChange={e => {
           setAddFriendEmail(e.target.value);
         }}
       />
-      <button>Add Friend</button>
-    </TheForm>
+      <TheBtn>Add Friend</TheBtn>
+    </form>
   );
 }
 
@@ -66,7 +66,15 @@ export default connect(
   { postFriend }
 )(AddFriend);
 
-const TheForm = styled.form`
-    background-color: black;
-    color: white;
+const TheInput = styled.input`
+  border: 2px solid black;
+  margin-right: 5px;
+  margin-top: 15px;
+`;
+
+const TheBtn = styled.button`
+  border: 1px solid black;
+  margin-left: 15px;
+  margin-top: 15px;
+  border-radius: 4px;
 `;

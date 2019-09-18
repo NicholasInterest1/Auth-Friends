@@ -13,7 +13,7 @@ function FriendList({ getFriends, friends }) {
 
   return (
     <>
-      <h2>List of Friends</h2>
+      <AnotherH2>List of Friends</AnotherH2>
       <TheDiv>
         {friends.map(friend => {
           return <FriendCard key={friend.id} friend={friend} />;
@@ -43,4 +43,9 @@ const TheDiv = styled.div`
     align-items: center;
     background-color: #002244;
     border-bottom: 2px solid white;
+    border-top: 2px solid white;
+`;
+
+const AnotherH2 = styled.h2`
+  color: black;
 `;

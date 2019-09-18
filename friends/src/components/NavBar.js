@@ -18,6 +18,7 @@ function NavBar() {
 export default NavBar;
 
 const TheHeader = styled.header`
+  color: black;
   font-size: 2.5rem;
   font-weight: bold;
 `;

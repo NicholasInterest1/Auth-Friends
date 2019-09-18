@@ -12,9 +12,9 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Route path='/login' component={Login} />
-      <PrivateRoute exact path='/addFriend' component={AddFriend} />
-      <PrivateRoute exact path='/friendlist' component={FriendList} />
+      <Route exact path='/login' component={Login} />
+      <PrivateRoute path='/friendlist' component={AddFriend} />
+      <PrivateRoute path='/friendlist' component={FriendList} />
     </div>
   );
 }
