@@ -1,33 +1,46 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
-import FriendCard from './FriendCard'
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import FriendCard from "./FriendCard";
 
-import { getFriends } from '../utils/actions'
+import { getFriends } from "../utils/actions";
 
-function FriendList({ getFriends, friends}) {
+import styled from "styled-components";
 
-    useEffect(() => {
-        getFriends()
-    }, [getFriends])
+function FriendList({ getFriends, friends }) {
+  useEffect(() => {
+    getFriends();
+  }, [getFriends]);
 
-    return (
-        <>
-            <h2>List of Friends</h2>
-            <div>
-                {friends.map((friend) => {
-                    return <FriendCard key={friend.id} friend={friend}/>
-                })}
-            </div>
-        </>
-    )
-} 
+  return (
+    <>
+      <h2>List of Friends</h2>
+      <TheDiv>
+        {friends.map(friend => {
+          return <FriendCard key={friend.id} friend={friend} />;
+        })}
+      </TheDiv>
+    </>
+  );
+}
 
 const mapStateToProps = state => {
-    return {
-      friends: state.friends,
-      isFetching: state.isFetching,
-      error: state.error
-    }
-  }
-  
-  export default connect(mapStateToProps, {getFriends})(FriendList)
+  return {
+    friends: state.friends,
+    isFetching: state.isFetching,
+    error: state.error
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getFriends }
+)(FriendList);
+
+const TheDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #002244;
+    border-bottom: 2px solid white;
+`;
