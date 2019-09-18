@@ -1,49 +1,53 @@
-import React, { useState }from "react";
+import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { Redirect } from "react-router-dom";
 
-export default function Login(props) {
-    const [credentials, setCredentials] = useState({
+class Login extends React.Component {
+  state = {
+    credentials: {
       username: "",
-      password: "",
-    });
+      password: ""
+    }
+  };
 
-  const handleChange = e => {
-    setCredentials({
-      ...credentials,
+  handleChange = e => {
+    this.setState({
+      credentials: {
         ...this.state.credentials,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value
+      }
     });
+  };
 
-  const login = e => {
+  login = e => {
     e.preventDefault();
     axiosWithAuth()
-      .post("/login", credentials)
+      .post("/login", this.state.credentials)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-        props.history.push("/friendslist");
+        this.props.history.push("/friendlist");
       })
       .catch(err => console.log(err));
   };
 
-  if (localStorage.getItem("token")) return <Redirect to="/friendslist" />
-
+  render() {
     return (
       <div>
-        <form onSubmit={login}>
+        <br />
+        <br />
+        <form onSubmit={this.login}>
           <input
             type="text"
             name="username"
-            placeholder="Username"
-            value={credentials.username}
-            onChange={handleChange}
+            value={this.state.credentials.username}
+            placeholder="login name"
+            onChange={this.handleChange}
           />
           <input
             type="password"
             name="password"
-            placeholder="Password"
-            value={credentials.password}
-            onChange={handleChange}
+            value={this.state.credentials.password}
+            placeholder="password"
+            onChange={this.handleChange}
           />
           <button>Log in</button>
         </form>
@@ -51,3 +55,5 @@ export default function Login(props) {
     );
   }
 }
+
+export default Login;
