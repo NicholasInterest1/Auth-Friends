@@ -53,7 +53,7 @@ export const UPDATING_FRIEND_FAILURE = "UPDATING_FRIEND_FAILURE";
 export const UPDATING_FRIEND_SUCCESS = "UPDATING_FRIEND_SUCCESS";
 export const updateFriend = friendId => dispatch => {
   dispatch({ type: UPDATING_FRIEND_START });
-  axiosWithAuth()
+  axiosWithAuth(friendId)
     .put(`/friends/${friendId}`)
     .then(res => {
       dispatch({ type: UPDATING_FRIEND_SUCCESS, payload: res.data });
